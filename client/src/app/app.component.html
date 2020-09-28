@@ -1,0 +1,39 @@
+<div class="container mt-5">
+    <ng-container *ngIf="!quizSubmitted; else displayResult">
+        <app-question *ngIf="selectedQuestionIndex" [question]="questions[selectedQuestionIndex - 1]"></app-question>
+
+        <div class="mt-3">
+            <button *ngIf="selectedQuestionIndex < 5" (click)="nextQuestion()" class="btn btn-primary">
+                Next
+            </button>
+            <button *ngIf="selectedQuestionIndex === 5" (click)="submit()" class="btn btn-success">
+                Submit
+            </button>
+        </div>
+    </ng-container>
+    <ng-template #displayResult>
+        <div>
+            <h2>
+                SUMMARY
+            </h2>
+            <div>
+                Correct: <b>{{result.correct}}</b>
+            </div>
+            <div>
+                Wrong: <b>{{result.wrong}}</b>
+            </div>
+            <div>
+                Questions answered: <b>{{result.answered}}</b>
+            </div>
+            <div>
+                Final Score: <b>{{result.score | number: '1.2-2'}}%</b>
+            </div>
+            <div class="mt-2">
+                <button (click)="restartQuiz()" class="btn btn-primary">
+                    Restart Quiz
+                </button>
+            </div>
+        </div>
+
+    </ng-template>
+</div>

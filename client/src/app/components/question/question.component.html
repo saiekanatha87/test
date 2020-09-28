@@ -1,0 +1,15 @@
+<h3 [innerHTML]="question.question"></h3>
+
+<div *ngIf="!isTextQuestion()">
+  <div class="radio" *ngFor="let option of question.options">
+    <input type="radio" name="optradio" [id]="option" [value]="option" [(ngModel)]="question.answer">
+    <label class="ml-1" [innerHTML]="option" for="{{option}}">
+    </label>
+  </div>
+</div>
+
+<div *ngIf="isTextQuestion()">
+  <div>
+    <input type="text" [(ngModel)]="question.answer">
+  </div>
+</div>
